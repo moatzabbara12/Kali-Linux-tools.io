@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أدوات الهكر الأخلاقي - Ethical Hacking Tools</title>
+    <style>
+        /* ==================== CSS SECTION ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Styles */
+        .header {
+            text-align: center;
+            padding: 40px 0;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            margin-bottom: 40px;
+            border: 2px solid rgba(0, 255, 127, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 255, 127, 0.1);
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #00ff7f, #00bfff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 20px rgba(0, 255, 127, 0.5);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: #b0b0b0;
+            margin-bottom: 20px;
+        }
+
+        /* Search Bar */
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto 40px;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
+            border: 2px solid rgba(0, 255, 127, 0.3);
+            border-radius: 50px;
+            background: rgba(0, 0, 0, 0.5);
+            color: #ffffff;
+            font-size: 16px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            border-color: #00ff7f;
+            box-shadow: 0 0 20px rgba(0, 255, 127, 0.3);
+        }
+
+        .search-btn {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: linear-gradient(45deg, #00ff7f, #00bfff);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .search-btn:hover {
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 0 15px rgba(0, 255, 127, 0.5);
+        }
+
+        /* Category Filter */
+        .category-filter {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 40px;
+        }
+
+        .category-btn {
+            padding: 10px 20px;
+            border: 2px solid rgba(0, 255, 127, 0.3);
+            border-radius: 25px;
+            background: rgba(0, 0, 0, 0.3);
+            color: #ffffff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .category-btn:hover,
+        .category-btn.active {
+            background: linear-gradient(45deg, #00ff7f, #00bfff);
+            border-color: transparent;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 255, 127, 0.3);
+        }
+
+        /* Tools Grid */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .tool-card {
+            background: rgba(0, 0, 0, 0.4);
+            border: 2px solid rgba(0, 255, 127, 0.2);
+            border-radius: 15px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tool-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 127, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .tool-card:hover::before {
+            left: 100%;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+            border-color: #00ff7f;
+            box-shadow: 0 10px 30px rgba(0, 255, 127, 0.2);
+        }
+
+        .tool-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .tool-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            background: linear-gradient(45deg, #00ff7f, #00bfff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 15px;
+            font-size: 24px;
+        }
+
+        .tool-title {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        .tool-category {
+            font-size: 0.9rem;
+            color: #00ff7f;
+            margin-bottom: 10px;
+        }
+
+        .tool-description {
+            color: #b0b0b0;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .tool-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .tool-btn {
+            padding: 8px 16px;
+            border: 1px solid rgba(0, 255, 127, 0.5);
+            border-radius: 20px;
+            background: transparent;
+            color: #00ff7f;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .tool-btn:hover {
+            background: rgba(0, 255, 127, 0.1);
+            transform: scale(1.05);
+        }
+
+        .tool-btn.primary {
+            background: linear-gradient(45deg, #00ff7f, #00bfff);
+            color: #000000;
+            border-color: transparent;
+        }
+
+        .tool-btn.primary:hover {
+            background: linear-gradient(45deg, #00bfff, #00ff7f);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 2px solid rgba(0, 255, 127, 0.2);
+            margin-top: 60px;
+        }
+
+        .footer p {
+            color: #b0b0b0;
+            margin-bottom: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(0, 255, 127, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: #00ff7f;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: rgba(0, 255, 127, 0.2);
+            transform: scale(1.1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .category-filter {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- ==================== HTML SECTION ==================== -->
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>أدوات الهكر الأخلاقي</h1>
+            <p>مجموعة شاملة من أدوات اختبار الاختراق والأمان السيبراني</p>
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="ابحث عن أداة..." id="searchInput">
+                <button class="search-btn" onclick="searchTools()">🔍</button>
+            </div>
+        </header>
+
+        <!-- Category Filter -->
+        <div class="category-filter">
+            <button class="category-btn active" onclick="filterTools('all')">الكل</button>
+            <button class="category-btn" onclick="filterTools('reconnaissance')">استطلاع</button>
+            <button class="category-btn" onclick="filterTools('scanning')">مسح</button>
+            <button class="category-btn" onclick="filterTools('exploitation')">استغلال</button>
+            <button class="category-btn" onclick="filterTools('post-exploitation')">ما بعد الاستغلال</button>
+            <button class="category-btn" onclick="filterTools('forensics')">تحليل جنائي</button>
+            <button class="category-btn" onclick="filterTools('wireless')">الشبكات اللاسلكية</button>
+            <button class="category-btn" onclick="filterTools('web')">تطبيقات الويب</button>
+            <button class="category-btn" onclick="filterTools('mobile')">الهواتف المحمولة</button>
+        </div>
+
+        <!-- Tools Grid -->
+        <div class="tools-grid" id="toolsGrid">
+            <!-- Tools will be populated by JavaScript -->
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>© 2025 أدوات الهكر الأخلاقي - جميع الحقوق محفوظة</p>
+            <p>لأغراض التعليم والاختبار الأخلاقي فقط</p>
+            <div class="social-links">
+                <a href="#" class="social-link">📧</a>
+                <a href="#" class="social-link">🐦</a>
+                <a href="#" class="social-link">📘</a>
+                <a href="#" class="social-link">💻</a>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // ==================== JAVASCRIPT SECTION ====================
+        
+        // Tools Database
+        const tools = [
+            // Reconnaissance Tools
+            {
+                name: "Nmap",
+                category: "reconnaissance",
+                icon: "🔍",
+                description: "أداة قوية لاكتشاف الشبكات ومسح المنافذ وتحديد الخدمات المفتوحة",
+                commands: ["nmap -sS target", "nmap -A target"],
+                type: "network"
+            },
+            {
+                name: "Wireshark",
+                category: "reconnaissance",
+                icon: "🦈",
+                description: "محلل بروتوكولات الشبكة لمراقبة وتحليل حركة المرور",
+                commands: ["wireshark", "tshark -i eth0"],
+                type: "network"
+            },
+            {
+                name: "Maltego",
+                category: "reconnaissance",
+                icon: "🕷️",
+                description: "أداة للاستخبارات مفتوحة المصدر وتحليل الروابط",
+                commands: ["maltego"],
+                type: "osint"
+            },
+            {
+                name: "theHarvester",
+                category: "reconnaissance",
+                icon: "🌾",
+                description: "جمع عناوين البريد الإلكتروني والنطاقات الفرعية",
+                commands: ["theharvester -d domain.com -b google"],
+                type: "osint"
+            },
+            {
+                name: "Recon-ng",
+                category: "reconnaissance",
+                icon: "🔎",
+                description: "إطار عمل للاستطلاع مع وحدات متعددة",
+                commands: ["recon-ng"],
+                type: "osint"
+            },
+            {
+                name: "Shodan",
+                category: "reconnaissance",
+                icon: "🌐",
+                description: "محرك بحث للأجهزة المتصلة بالإنترنت",
+                commands: ["shodan search apache"],
+                type: "osint"
+            },
+
+            // Scanning Tools
+            {
+                name: "Nessus",
+                category: "scanning",
+                icon: "🔍",
+                description: "ماسح الثغرات الأمنية التجاري الشائع",
+                commands: ["nessus"],
+                type: "vulnerability"
+            },
+            {
+                name: "OpenVAS",
+                category: "scanning",
+                icon: "🛡️",
+                description: "ماسح ثغرات مفتوح المصدر",
+                commands: ["openvas-start"],
+                type: "vulnerability"
+            },
+            {
+                name: "Nikto",
+                category: "scanning",
+                icon: "🕸️",
+                description: "ماسح ثغرات خوادم الويب",
+                commands: ["nikto -h target"],
+                type: "web"
+            },
+            {
+                name: "Dirb",
+                category: "scanning",
+                icon: "📁",
+                description: "أداة لاكتشاف الملفات والمجلدات المخفية",
+                commands: ["dirb http://target/"],
+                type: "web"
+            },
+            {
+                name: "Gobuster",
+                category: "scanning",
+                icon: "🔍",
+                description: "أداة سريعة لاكتشاف المجلدات والملفات",
+                commands: ["gobuster dir -u http://target -w wordlist"],
+                type: "web"
+            },
+            {
+                name: "Masscan",
+                category: "scanning",
+                icon: "⚡",
+                description: "ماسح منافذ سريع جداً",
+                commands: ["masscan -p1-65535 target --rate=1000"],
+                type: "network"
+            },
+
+            // Exploitation Tools
+            {
+                name: "Metasploit",
+                category: "exploitation",
+                icon: "💥",
+                description: "إطار عمل شامل لاستغلال الثغرات الأمنية",
+                commands: ["msfconsole", "use exploit/windows/smb/ms17_010_eternalblue"],
+                type: "framework"
+            },
+            {
+                name: "Burp Suite",
+                category: "exploitation",
+                icon: "🍔",
+                description: "أداة شاملة لاختبار أمان تطبيقات الويب",
+                commands: ["burpsuite"],
+                type: "web"
+            },
+            {
+                name: "OWASP ZAP",
+                category: "exploitation",
+                icon: "⚡",
+                description: "أداة مفتوحة المصدر لاختبار أمان الويب",
+                commands: ["zaproxy"],
+                type: "web"
+            },
+            {
+                name: "SQLMap",
+                category: "exploitation",
+                icon: "🗃️",
+                description: "أداة للكشف عن واستغلال ثغرات SQL Injection",
+                commands: ["sqlmap -u 'http://target/page.php?id=1'"],
+                type: "web"
+            },
+            {
+                name: "John the Ripper",
+                category: "exploitation",
+                icon: "🔓",
+                description: "أداة لكسر كلمات المرور",
+                commands: ["john --wordlist=rockyou.txt hashes.txt"],
+                type: "password"
+            },
+            {
+                name: "Hashcat",
+                category: "exploitation",
+                icon: "🐱",
+                description: "أداة متقدمة لكسر كلمات المرور",
+                commands: ["hashcat -m 0 hashes.txt rockyou.txt"],
+                type: "password"
+            },
+            {
+                name: "Hydra",
+                category: "exploitation",
+                icon: "🐙",
+                description: "أداة للهجمات القاموسية على الخدمات",
+                commands: ["hydra -l admin -P passwords.txt ssh://target"],
+                type: "password"
+            },
+            {
+                name: "BeEF",
+                category: "exploitation",
+                icon: "🥩",
+                description: "إطار عمل لاستغلال المتصفحات",
+                commands: ["beef-xss"],
+                type: "web"
+            },
+
+            // Post-Exploitation Tools
+            {
+                name: "Mimikatz",
+                category: "post-exploitation",
+                icon: "🐱",
+                description: "أداة لاستخراج كلمات المرور من ذاكرة Windows",
+                commands: ["mimikatz"],
+                type: "windows"
+            },
+            {
+                name: "PowerShell Empire",
+                category: "post-exploitation",
+                icon: "👑",
+                description: "إطار عمل لما بعد الاستغلال باستخدام PowerShell",
+                commands: ["empire"],
+                type: "windows"
+            },
+            {
+                name: "Cobalt Strike",
+                category: "post-exploitation",
+                icon: "🎯",
+                description: "أداة محاكاة التهديدات المتقدمة",
+                commands: ["cobalt-strike"],
+                type: "framework"
+            },
+            {
+                name: "Meterpreter",
+                category: "post-exploitation",
+                icon: "🚀",
+                description: "حمولة متقدمة لما بعد الاستغلال",
+                commands: ["use payload/windows/meterpreter/reverse_tcp"],
+                type: "payload"
+            },
+
+            // Forensics Tools
+            {
+                name: "Autopsy",
+                category: "forensics",
+                icon: "🔬",
+                description: "منصة التحليل الجنائي الرقمي",
+                commands: ["autopsy"],
+                type: "forensics"
+            },
+            {
+                name: "Volatility",
+                category: "forensics",
+                icon: "🧠",
+                description: "إطار عمل لتحليل ذاكرة النظام",
+                commands: ["volatility -f memory.dump imageinfo"],
+                type: "memory"
+            },
+            {
+                name: "Sleuth Kit",
+                category: "forensics",
+                icon: "🕵️",
+                description: "مجموعة أدوات التحليل الجنائي",
+                commands: ["fls disk.img"],
+                type: "forensics"
+            },
+            {
+                name: "Binwalk",
+                category: "forensics",
+                icon: "📦",
+                description: "أداة لتحليل البرامج الثابتة",
+                commands: ["binwalk firmware.bin"],
+                type: "firmware"
+            },
+            {
+                name: "Foremost",
+                category: "forensics",
+                icon: "🔍",
+                description: "أداة لاسترداد الملفات",
+                commands: ["foremost -i disk.img"],
+                type: "recovery"
+            },
+
+            // Wireless Tools
+            {
+                name: "Aircrack-ng",
+                category: "wireless",
+                icon: "📡",
+                description: "مجموعة أدوات لاختبار أمان الشبكات اللاسلكية",
+                commands: ["aircrack-ng capture.cap"],
+                type: "wifi"
+            },
+            {
+                name: "Kismet",
+                category: "wireless",
+                icon: "💋",
+                description: "كاشف الشبكات اللاسلكية ومحلل الحزم",
+                commands: ["kismet"],
+                type: "wifi"
+            },
+            {
+                name: "Wifite",
+                category: "wireless",
+                icon: "📶",
+                description: "أداة آلية لاختبار أمان WiFi",
+                commands: ["wifite"],
+                type: "wifi"
+            },
+            {
+                name: "Reaver",
+                category: "wireless",
+                icon: "🔓",
+                description: "أداة لاختراق WPS",
+                commands: ["reaver -i mon0 -b target -vv"],
+                type: "wifi"
+            },
+            {
+                name: "Fluxion",
+                category: "wireless",
+                icon: "🌊",
+                description: "أداة لمحاكاة نقاط الوصول المزيفة",
+                commands: ["fluxion"],
+                type: "wifi"
+            },
+
+            // Web Application Tools
+            {
+                name: "Wpscan",
+                category: "web",
+                icon: "🔍",
+                description: "ماسح ثغرات WordPress",
+                commands: ["wpscan --url http://target"],
+                type: "cms"
+            },
+            {
+                name: "Dirb",
+                category: "web",
+                icon: "📁",
+                description: "أداة لاكتشاف المجلدات والملفات المخفية",
+                commands: ["dirb http://target/"],
+                type: "discovery"
+            },
+            {
+                name: "Commix",
+                category: "web",
+                icon: "💉",
+                description: "أداة للكشف عن ثغرات Command Injection",
+                commands: ["commix --url='http://target/page.php?id=1'"],
+                type: "injection"
+            },
+            {
+                name: "XSSer",
+                category: "web",
+                icon: "❌",
+                description: "أداة للكشف عن ثغرات XSS",
+                commands: ["xsser --url 'http://target/search.php?q=test'"],
+                type: "xss"
+            },
+
+            // Mobile Tools
+            {
+                name: "MobSF",
+                category: "mobile",
+                icon: "📱",
+                description: "إطار عمل لتحليل أمان التطبيقات المحمولة",
+                commands: ["mobsf"],
+                type: "analysis"
+            },
+            {
+                name: "Drozer",
+                category: "mobile",
+                icon: "🤖",
+                description: "إطار عمل لاختبار أمان Android",
+                commands: ["drozer console connect"],
+                type: "android"
+            },
+            {
+                name: "QARK",
+                category: "mobile",
+                icon: "🔍",
+                description: "أداة لتحليل تطبيقات Android",
+                commands: ["qark --apk app.apk"],
+                type: "android"
+            },
+
+            // Additional Tools
+            {
+                name: "Netcat",
+                category: "exploitation",
+                icon: "🐱",
+                description: "أداة الشبكة السويسرية متعددة الاستخدامات",
+                commands: ["nc -l -p 4444", "nc target 80"],
+                type: "network"
+            },
+            {
+                name: "Socat",
+                category: "exploitation",
+                icon: "🔗",
+                description: "أداة ترحيل البيانات المتقدمة",
+                commands: ["socat TCP-LISTEN:8080,fork TCP:target:80"],
+                type: "network"
+            },
+            {
+                name: "Ettercap",
+                category: "exploitation",
+                icon: "🕸️",
+                description: "أداة لهجمات Man-in-the-Middle",
+                commands: ["ettercap -T -M arp:remote /target1// /target2//"],
+                type: "mitm"
+            },
+            {
+                name: "Bettercap",
+                category: "exploitation",
+                icon: "📡",
+                description: "إطار عمل حديث لهجمات الشبكة",
+                commands: ["bettercap -iface eth0"],
+                type: "network"
+            },
+            {
+                name: "Social Engineer Toolkit",
+                category: "exploitation",
+                icon: "🎭",
+                description: "إطار عمل للهندسة الاجتماعية",
+                commands: ["setoolkit"],
+                type: "social"
+            },
+            {
+                name: "Responder",
+                category: "exploitation",
+                icon: "📢",
+                description: "أداة لاعتراض بروتوكولات الشبكة",
+                commands: ["responder -I eth0"],
+                type: "network"
+            },
+            {
+                name: "Impacket",
+                category: "exploitation",
+                icon: "📦",
+                description: "مجموعة أدوات بروتوكولات الشبكة",
+                commands: ["psexec.py domain/user:password@target"],
+                type: "windows"
+            },
+            {
+                name: "CrackMapExec",
+                category: "exploitation",
+                icon: "🗺️",
+                description: "أداة لاختبار أمان شبكات Windows",
+                commands: ["crackmapexec smb target -u user -p password"],
+                type: "windows"
+            },
+            {
+                name: "BloodHound",
+                category: "post-exploitation",
+                icon: "🩸",
+                description: "أداة لتحليل مسارات الهجوم في Active Directory",
+                commands: ["bloodhound"],
+                type: "ad"
+            },
+            {
+                name: "LinPEAS",
+                category: "post-exploitation",
+                icon: "🐧",
+                description: "أداة لتصعيد الامتيازات في Linux",
+                commands: ["./linpeas.sh"],
+                type: "linux"
+            },
+            {
+                name: "WinPEAS",
+                category: "post-exploitation",
+                icon: "🪟",
+                description: "أداة لتصعيد الامتيازات في Windows",
+                commands: ["winpeas.exe"],
+                type: "windows"
+            },
+            {
+                name: "GTFOBins",
+                category: "post-exploitation",
+                icon: "🗂️",
+                description: "قاعدة بيانات لتجاوز القيود الأمنية",
+                commands: ["gtfobins"],
+                type: "bypass"
+            },
+            {
+                name: "PEASS",
+                category: "post-exploitation",
+                icon: "🔍",
+                description: "مجموعة أدوات لتصعيد الامتيازات",
+                commands: ["./peass.sh"],
+                type: "privilege"
+            }
+        ];
+
+        // Global variables
+        let currentFilter = 'all';
+        let filteredTools = [...tools];
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            renderTools();
+            setupEventListeners();
+        });
+
+        // Render tools to the grid
+        function renderTools() {
+            const toolsGrid = document.getElementById('toolsGrid');
+            toolsGrid.innerHTML = '';
+
+            filteredTools.forEach((tool, index) => {
+                const toolCard = createToolCard(tool, index);
+                toolsGrid.appendChild(toolCard);
+            });
+
+            // Add animation
+            const cards = document.querySelectorAll('.tool-card');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.classList.add('fade-in');
+                }, index * 50);
+            });
+        }
+
+        // Create a tool card element
+        function createToolCard(tool, index) {
+            const card = document.createElement('div');
+            card.className = 'tool-card';
+            card.setAttribute('data-category', tool.category);
+            
+            const categoryName = getCategoryName(tool.category);
+            const commands = tool.commands ? tool.commands.slice(0, 2) : [];
+            
+            card.innerHTML = `
+                <div class="tool-header">
+                    <div class="tool-icon">${tool.icon}</div>
+                    <div>
+                        <div class="tool-title">${tool.name}</div>
+                        <div class="tool-category">${categoryName}</div>
+                    </div>
+                </div>
+                <div class="tool-description">${tool.description}</div>
+                ${commands.length > 0 ? `
+                <div class="tool-commands">
+                    <strong>أمثلة الأوامر:</strong>
+                    ${commands.map(cmd => `<code>${cmd}</code>`).join('<br>')}
+                </div>
+                ` : ''}
+                <div class="tool-actions">
+                    <button class="tool-btn primary" onclick="showToolDetails(${index})">تفاصيل</button>
+                    <button class="tool-btn" onclick="copyCommands(${index})">نسخ الأوامر</button>
+                    <button class="tool-btn" onclick="showInstallation('${tool.name}')">التثبيت</button>
+                </div>
+            `;
+            
+            return card;
+        }
+
+        // Get category name in Arabic
+        function getCategoryName(category) {
+            const categoryNames = {
+                'reconnaissance': 'استطلاع',
+                'scanning': 'مسح',
+                'exploitation': 'استغلال',
+                'post-exploitation': 'ما بعد الاستغلال',
+                'forensics': 'تحليل جنائي',
+                'wireless': 'الشبكات اللاسلكية',
+                'web': 'تطبيقات الويب',
+                'mobile': 'الهواتف المحمولة'
+            };
+            return categoryNames[category] || category;
+        }
+
+        // Filter tools by category
+        function filterTools(category) {
+            currentFilter = category;
+            
+            // Update active button
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Filter tools
+            if (category === 'all') {
+                filteredTools = [...tools];
+            } else {
+                filteredTools = tools.filter(tool => tool.category === category);
+            }
+            
+            renderTools();
+        }
+
+        // Search tools
+        function searchTools() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            
+            if (searchTerm === '') {
+                filteredTools = currentFilter === 'all' ? [...tools] : tools.filter(tool => tool.category === currentFilter);
+            } else {
+                const baseTools = currentFilter === 'all' ? tools : tools.filter(tool => tool.category === currentFilter);
+                filteredTools = baseTools.filter(tool => 
+                    tool.name.toLowerCase().includes(searchTerm) ||
+                    tool.description.toLowerCase().includes(searchTerm) ||
+                    getCategoryName(tool.category).includes(searchTerm)
+                );
+            }
+            
+            renderTools();
+        }
+
+        // Show tool details
+        function showToolDetails(index) {
+            const tool = filteredTools[index];
+            alert(`
+اسم الأداة: ${tool.name}
+الفئة: ${getCategoryName(tool.category)}
+الوصف: ${tool.description}
+النوع: ${tool.type}
+
+الأوامر المتاحة:
+${tool.commands ? tool.commands.join('\n') : 'لا توجد أوامر محددة'}
+            `);
+        }
+
+        // Copy commands to clipboard
+        function copyCommands(index) {
+            const tool = filteredTools[index];
+            if (tool.commands && tool.commands.length > 0) {
+                const commands = tool.commands.join('\n');
+                navigator.clipboard.writeText(commands).then(() => {
+                    showNotification('تم نسخ الأوامر إلى الحافظة!');
+                }).catch(() => {
+                    // Fallback for older browsers
+                    const textArea = document.createElement('textarea');
+                    textArea.value = commands;
+                    document.body.appendChild(textArea);
+                    textArea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textArea);
+                    showNotification('تم نسخ الأوامر إلى الحافظة!');
+                });
+            } else {
+                showNotification('لا توجد أوامر للنسخ');
+            }
+        }
+
+        // Show installation instructions
+        function showInstallation(toolName) {
+            const installations = {
+                'Nmap': 'sudo apt-get install nmap\n# أو\nyum install nmap\n# أو\nbrew install nmap',
+                'Wireshark': 'sudo apt-get install wireshark\n# أو\nyum install wireshark\n# أو\nbrew install wireshark',
+                'Metasploit': 'curl https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/config/templates/metasploit-framework-wrappers/msfupdate.erb > msfinstall && chmod 755 msfinstall && ./msfinstall',
+                'Burp Suite': 'تحميل من الموقع الرسمي: https://portswigger.net/burp/communitydownload',
+                'John the Ripper': 'sudo apt-get install john\n# أو\ngit clone https://github.com/magnumripper/JohnTheRipper',
+                'Aircrack-ng': 'sudo apt-get install aircrack-ng\n# أو\nyum install aircrack-ng',
+                'SQLMap': 'sudo apt-get install sqlmap\n# أو\ngit clone https://github.com/sqlmapproject/sqlmap.git'
+            };
+            
+            const installation = installations[toolName] || `# تثبيت ${toolName}\nsudo apt-get install ${toolName.toLowerCase()}\n# أو\nyum install ${toolName.toLowerCase()}\n# أو ابحث عن التثبيت المناسب لنظامك`;
+            
+            alert(`تعليمات تثبيت ${toolName}:\n\n${installation}`);
+        }
+
+        // Show notification
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: linear-gradient(45deg, #00ff7f, #00bfff);
+                color: #000;
+                padding: 15px 25px;
+                border-radius: 10px;
+                font-weight: bold;
+                z-index: 1000;
+                animation: slideIn 0.3s ease;
+            `;
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Search input
+            const searchInput = document.getElementById('searchInput');
+            searchInput.addEventListener('input', searchTools);
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    searchTools();
+                }
+            });
+
+            // Keyboard shortcuts
+            document.addEventListener('keydown', function(e) {
+                // Ctrl+F to focus search
+                if (e.ctrlKey && e.key === 'f') {
+                    e.preventDefault();
+                    document.getElementById('searchInput').focus();
+                }
+                
+                // Escape to clear search
+                if (e.key === 'Escape') {
+                    document.getElementById('searchInput').value = '';
+                    searchTools();
+                }
+            });
+
+            // Smooth scrolling for internal links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        }
+
+        // Add CSS animations
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            
+            @keyframes slideOut {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(100%); opacity: 0; }
+            }
+            
+            .tool-commands {
+                margin-bottom: 15px;
+                padding: 10px;
+                background: rgba(0, 255, 127, 0.1);
+                border-radius: 8px;
+                border: 1px solid rgba(0, 255, 127, 0.2);
+            }
+            
+            .tool-commands strong {
+                color: #00ff7f;
+                display: block;
+                margin-bottom: 8px;
+            }
+            
+            .tool-commands code {
+                background: rgba(0, 0, 0, 0.5);
+                padding: 4px 8px;
+                border-radius: 4px;
+                font-family: 'Courier New', monospace;
+                color: #00bfff;
+                font-size: 13px;
+                display: inline-block;
+                margin: 2px 0;
+            }
+            
+            .pulse {
+                animation: pulse 2s infinite;
+            }
+            
+            @keyframes pulse {
+                0% { box-shadow: 0 0 5px rgba(0, 255, 127, 0.3); }
+                50% { box-shadow: 0 0 20px rgba(0, 255, 127, 0.6); }
+                100% { box-shadow: 0 0 5px rgba(0, 255, 127, 0.3); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Add matrix rain effect (optional)
+        function createMatrixRain() {
+            const canvas = document.createElement('canvas');
+            canvas.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: -1;
+                opacity: 0.1;
+                pointer-events: none;
+            `;
+            document.body.appendChild(canvas);
+            
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            
+            const matrix = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%+-/~{[|`]}";
+            const matrixArray = matrix.split("");
+            
+            const fontSize = 10;
+            const columns = canvas.width / fontSize;
+            const drops = [];
+            
+            for (let x = 0; x < columns; x++) {
+                drops[x] = 1;
+            }
+            
+            function draw() {
+                ctx.fillStyle = 'rgba(15, 15, 35, 0.04)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                
+                ctx.fillStyle = '#00ff7f';
+                ctx.font = fontSize + 'px monospace';
+                
+                for (let i = 0; i < drops.length; i++) {
+                    const text = matrixArray[Math.floor(Math.random() * matrixArray.length)];
+                    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                    
+                    if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                        drops[i] = 0;
+                    }
+                    drops[i]++;
+                }
+            }
+            
+            setInterval(draw, 35);
+            
+            // Resize handler
+            window.addEventListener('resize', () => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            });
+        }
+
+        // Uncomment to enable matrix rain effect
+        // createMatrixRain();
+
+        // Tool of the day feature
+        function getToolOfTheDay() {
+            const today = new Date();
+            const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 86400000);
+            const toolIndex = dayOfYear % tools.length;
+            return tools[toolIndex];
+        }
+
+        // Add tool of the day to header
+        function addToolOfTheDay() {
+            const toolOfDay = getToolOfTheDay();
+            const header = document.querySelector('.header p');
+            header.innerHTML += `<br><br><strong>🌟 أداة اليوم: ${toolOfDay.name}</strong><br>${toolOfDay.description}`;
+        }
+
+        // Initialize tool of the day
+        addToolOfTheDay();
+
+        // Export functionality
+        function exportToolsList() {
+            const toolsList = filteredTools.map(tool => 
+                `${tool.name} - ${getCategoryName(tool.category)}\n${tool.description}\n${tool.commands ? tool.commands.join(', ') : ''}\n---`
+            ).join('\n\n');
+            
+            const blob = new Blob([toolsList], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'ethical_hacking_tools.txt';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // Add export button to header
+        const exportBtn = document.createElement('button');
+        exportBtn.textContent = '📥 تصدير القائمة';
+        exportBtn.className = 'tool-btn primary';
+        exportBtn.style.marginTop = '20px';
+        exportBtn.onclick = exportToolsList;
+        document.querySelector('.header').appendChild(exportBtn);
+
+        console.log('🔥 تم تحميل أدوات الهكر الأخلاقي بنجاح!');
+        console.log('📊 إجمالي الأدوات:', tools.length);
+        console.log('🛡️ جميع الأدوات لأغراض الاختبار الأخلاقي فقط');
+    </script>
+</body>
+</html>
